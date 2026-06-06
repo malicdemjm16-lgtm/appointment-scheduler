@@ -534,15 +534,23 @@ function render() {
 
   setTodayLabel();
 
-  // Seed with sample data if empty
+// Seed with sample data if empty
   if (appointments.length === 0) {
     const t = Date.now();
+    const d = new Date();
+    const fmt = (offset) => {
+      const x = new Date(d); x.setDate(x.getDate() + offset);
+      return toDateStr(x);
+    };
     appointments = [
-      { id: '1', title: 'Annual Physical Exam', description: 'Fasting required from midnight', preferredDate: '', priority: 'high', createdAt: t, scheduledDate: '' },
-      { id: '2', title: 'Tax Consultation', description: 'Bring receipts and prior returns', preferredDate: '', priority: 'high', createdAt: t + 1, scheduledDate: '' },
-      { id: '3', title: 'Dentist Appointment', description: 'Regular 6-month checkup', preferredDate: '', priority: 'medium', createdAt: t + 2, scheduledDate: '' },
-      { id: '4', title: 'Team Performance Review', description: 'Quarterly review with manager', preferredDate: '', priority: 'medium', createdAt: t + 3, scheduledDate: '' },
-      { id: '5', title: 'Car Service & Oil Change', description: 'Scheduled maintenance at the dealership', preferredDate: '', priority: 'low', createdAt: t + 4, scheduledDate: '' },
+      { id: '1', title: 'DPWH Road Widening — Site Inspection', description: 'On-site visit for Phase 1 roadway alignment check along Maharlika Highway. Coordinate with DPWH Region III project manager. Bring stamped plan sets and GPS unit.', preferredDate: fmt(1), priority: 'high', createdAt: t, scheduledDate: '' },
+      { id: '2', title: 'PRC License Renewal — Civil Engineer', description: 'PRC appointment for CE license renewal. Requirements: 2x2 photos, CPD units certificate, old PRC ID, and OR of payment. Report to PRC Manila by 8:00 AM.', preferredDate: fmt(3), priority: 'high', createdAt: t + 1, scheduledDate: '' },
+      { id: '3', title: 'Geodetic Survey — Lot Subdivision (Pampanga)', description: 'Conduct lot subdivision survey for a 2.4-hectare agricultural land in San Fernando, Pampanga. Set monuments, compute bearings and distances, prepare survey returns for LRA submission.', preferredDate: fmt(5), priority: 'high', createdAt: t + 2, scheduledDate: '' },
+      { id: '4', title: 'Structural Design Review — 4-Storey Building', description: 'Internal design review with the structural team for a 4-storey RC building in Clark Freeport. Check column sizes, beam layout, and footing design against NSCP 2015 provisions.', preferredDate: fmt(8), priority: 'high', createdAt: t + 3, scheduledDate: '' },
+      { id: '5', title: 'HLURB/DHSUD Permit Follow-up', description: 'Follow up on development permit application for Residential Subdivision Project in Mabalacat. Bring updated site development plan, vicinity map, and barangay clearance.', preferredDate: fmt(10), priority: 'medium', createdAt: t + 4, scheduledDate: '' },
+      { id: '6', title: 'Topographic Survey Fieldwork — Dam Site', description: 'Fieldwork for topo survey of proposed small water impounding project in Tarlac. Use total station and level instrument. Establish benchmarks and tie to NAMRIA datum.', preferredDate: fmt(12), priority: 'medium', createdAt: t + 5, scheduledDate: '' },
+      { id: '7', title: 'Client Meeting — As-Built Plans Submission', description: 'Present and submit as-built drawings for completed box culvert project to the municipal engineer. Bring signed and sealed PDF and hard copy sets.', preferredDate: fmt(15), priority: 'medium', createdAt: t + 6, scheduledDate: '' },
+      { id: '8', title: 'CPD Seminar — Geospatial Technology in Engineering', description: 'One-day CPD seminar by PICE on drone photogrammetry and GIS applications in civil engineering projects. Earns 8 CPD units. Venue: PICC, Pasay City.', preferredDate: fmt(18), priority: 'low', createdAt: t + 7, scheduledDate: '' },
     ];
     scheduleAll();
   }
